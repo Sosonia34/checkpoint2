@@ -1,10 +1,7 @@
-
 import PropTypes from "prop-types";
-
 
 function Cupcake({ cupcake }) {
   return (
-     
     <div className="cupcake-container">
       <div className="cupcake">
         <img src={cupcake.url} alt="accessory" />
@@ -43,7 +40,6 @@ function Cupcake({ cupcake }) {
 
       <div className="cupcake-name">{cupcake.name}</div>
     </div>
-    
   );
 }
 

@@ -1,26 +1,18 @@
-import {useParams} from 'react-router-dom';
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import Cupcake from '@components/Cupcake';
+import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Cupcake from "../components/Cupcake";
 
 export default function CupcakeDetails() {
+  const { id } = useParams();
 
-    const {id} = useParams();
+  const [cupcakeDetails, setCupcakeDetails] = useState([]);
 
-    const [cupcakeDetails, setCupcakeDetails] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/cupcakes/${id}`)
+      .then((cupcake) => setCupcakeDetails(cupcake.data));
+  }, []);
 
-    useEffect(()=>{
-        axios
-            .get(`http://localhost:4000/cupcakes/${id}`)
-            .then(cupcake => setCupcakeDetails(cupcake.data))
-    }, []);
-
-    return(
-        <>
-          <Cupcake cupcake={cupcakeDetails} />
-          
-        </>
-    );
+  return <Cupcake cupcake={cupcakeDetails} />;
 }
-
- 
